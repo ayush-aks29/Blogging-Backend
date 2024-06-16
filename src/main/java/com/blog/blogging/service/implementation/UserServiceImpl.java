@@ -6,6 +6,7 @@ import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.repository.UserRepository;
 import com.blog.blogging.service.UserService;
 import com.blog.blogging.utility.Conversion;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +19,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    Conversion convert = new Conversion();
+    @Autowired
+    public ModelMapper modelMapper;
+
+//    @Autowired
+    private Conversion convert=new Conversion();
 
     @Override
     public UserDto createUser(UserDto userDto) {
 
         User user = convert.dtoToUser(userDto);
-        User savedUser = this.userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        System.out.println(savedUser);
         return convert.userToDto(savedUser);
 
     }
 
     @Override
     public UserDto updateUser(UserDto userDto, Integer userId) {
-        User user = this.userRepository.findById(userId).
+        User user = userRepository.findById(userId).
                 orElseThrow((() ->
                         new ResourceNotFoundException("User","Id", userId))
         );
