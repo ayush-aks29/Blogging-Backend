@@ -1,5 +1,6 @@
 package com.blog.blogging.controller;
 
+import com.blog.blogging.payload.ApiResponse;
 import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.service.UserService;
 import com.blog.blogging.utility.Conversion;
@@ -34,7 +35,8 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer userId){
         this.userService.deleteUser(userId);
-        return new ResponseEntity<>(Map.of("message","User Deleted Successfully"),HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
+//        return new ResponseEntity<>(Map.of("message","User Deleted Successfully"),HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
