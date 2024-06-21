@@ -24,7 +24,7 @@ public class UserDto {
     private String password;
 
     @NotEmpty
-    @Size(min=50, message = "Minimum 50 characters required")
+    @Size(min=10, message = "Minimum 10 characters required")
     private String about;
 
 }
