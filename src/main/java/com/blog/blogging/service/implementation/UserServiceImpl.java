@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
 
         User user = convert.dtoToUser(userDto);
         User savedUser = userRepository.save(user);
-        System.out.println(savedUser);
         return convert.userToDto(savedUser);
 
     }
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
                 );
         this.userRepository.delete(user);
 
-        return null;
+        return convert.userToDto(user);
     }
 
     @Override

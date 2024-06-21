@@ -14,13 +14,17 @@ public class UserDto {
 
     @NotEmpty(message = "Name cannot be empty")
     private String name;
+
     @Email(message = "Invalid email address")
     @Pattern(regexp = "^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", message = "Enter a valid email address")
     private String email;
+
     @NotEmpty
     @Size(min=8, message = "Password must be of at least 8 characters")
     private String password;
+
     @NotEmpty
+    @Size(min=50, message = "Minimum 50 characters required")
     private String about;
 
 }

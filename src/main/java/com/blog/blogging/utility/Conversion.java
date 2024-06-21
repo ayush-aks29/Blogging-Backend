@@ -1,6 +1,8 @@
 package com.blog.blogging.utility;
 
+import com.blog.blogging.entity.Category;
 import com.blog.blogging.entity.User;
+import com.blog.blogging.payload.CategoryDto;
 import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.service.implementation.UserServiceImpl;
 import org.modelmapper.ModelMapper;
@@ -43,6 +45,14 @@ public class Conversion {
         return userDto;
         */
         return modelMapper.map(user, UserDto.class);
+    }
+
+    public Category dtoToCategory(CategoryDto categoryDto){
+        return modelMapper.map(categoryDto, Category.class);
+    }
+
+    public CategoryDto categoryToDto(Category category){
+        return modelMapper.map(category, CategoryDto.class);
     }
 
 }
