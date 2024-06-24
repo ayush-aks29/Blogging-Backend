@@ -2,7 +2,6 @@ package com.blog.blogging.controller;
 
 import com.blog.blogging.payload.ApiResponse;
 import com.blog.blogging.payload.PostDto;
-import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
