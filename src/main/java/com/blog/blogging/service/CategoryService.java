@@ -1,19 +1,25 @@
 package com.blog.blogging.service;
 
 import com.blog.blogging.payload.CategoryDto;
+import com.blog.blogging.payload.CategoryResponse;
+import com.blog.blogging.payload.PostResponse;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    //c
+    //add  category
     CategoryDto createCategory(CategoryDto categoryDto);
-    //r
+
+    //get category by id
     CategoryDto getCategoryById(Integer categoryId);
 
-    List<CategoryDto> getAllCategories();
-    //u
+    //get all categories including pagination
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize);
+
+    //update category
     CategoryDto updateCategory(CategoryDto categoryDto, Integer categoryId);
-    //d
+
+    //delete category
     CategoryDto deleteCategory(Integer categoryId);
 }
