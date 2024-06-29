@@ -1,9 +1,7 @@
 package com.blog.blogging.controller;
 
-import com.blog.blogging.payload.ApiResponse;
+import com.blog.blogging.payload.*;
 import com.blog.blogging.payload.CategoryDto;
-import com.blog.blogging.payload.CategoryDto;
-import com.blog.blogging.payload.PostDto;
 import com.blog.blogging.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +20,12 @@ public class CategoryController {
     public CategoryService categoryService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<CategoryDto>> getAllCategories(
+    public ResponseEntity<CategoryResponse> getAllCategories(
             @RequestParam(value="pageNumber", defaultValue = "0", required = false)Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "100", required = false)Integer pageSize
     ){
-        List<CategoryDto> allCategory = this.categoryService.getAllCategories(pageNumber, pageSize);
-        return new ResponseEntity<List<CategoryDto>>(allCategory, HttpStatus.OK);
+        CategoryResponse categoryResponse = this.categoryService.getAllCategories(pageNumber, pageSize);
+        return new ResponseEntity<CategoryResponse>(categoryResponse, HttpStatus.OK);
     }
 
     @GetMapping("/get/{categoryId}")
