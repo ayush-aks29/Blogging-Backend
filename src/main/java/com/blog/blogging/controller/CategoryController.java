@@ -1,5 +1,6 @@
 package com.blog.blogging.controller;
 
+import com.blog.blogging.config.AppConstants;
 import com.blog.blogging.payload.*;
 import com.blog.blogging.payload.CategoryDto;
 import com.blog.blogging.service.CategoryService;
@@ -21,8 +22,8 @@ public class CategoryController {
 
     @GetMapping("/getAll")
     public ResponseEntity<CategoryResponse> getAllCategories(
-            @RequestParam(value="pageNumber", defaultValue = "0", required = false)Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "100", required = false)Integer pageSize
+            @RequestParam(value="pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false)Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false)Integer pageSize
     ){
         CategoryResponse categoryResponse = this.categoryService.getAllCategories(pageNumber, pageSize);
         return new ResponseEntity<CategoryResponse>(categoryResponse, HttpStatus.OK);
