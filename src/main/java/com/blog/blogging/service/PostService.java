@@ -19,7 +19,7 @@ public interface PostService {
     void deletePost(Integer postId);
 
     //get all posts including pagenation
-    PostResponse getAll(Integer pageNumber, Integer pageSize);
+    PostResponse getAll(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection);
 
     //get post by id
     PostDto getPostById(Integer postId);

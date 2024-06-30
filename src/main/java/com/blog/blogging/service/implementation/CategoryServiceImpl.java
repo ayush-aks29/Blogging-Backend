@@ -1,10 +1,8 @@
 package com.blog.blogging.service.implementation;
 
 import com.blog.blogging.entity.Category;
-import com.blog.blogging.entity.Post;
 import com.blog.blogging.exception.ResourceNotFoundException;
 import com.blog.blogging.payload.CategoryDto;
-import com.blog.blogging.payload.CategoryResponse;
 import com.blog.blogging.payload.CategoryResponse;
 import com.blog.blogging.repository.CategoryRepository;
 import com.blog.blogging.service.CategoryService;
@@ -56,8 +54,9 @@ public class CategoryServiceImpl implements CategoryService {
         List<CategoryDto> categoryDtoList = categories.stream().map(category->
                         conversion.categoryToDto(category))
                 .collect(Collectors.toList());
-        
+
         CategoryResponse categoryResponse = new CategoryResponse();
+
         categoryResponse.setContent(categoryDtoList);
         categoryResponse.setPageNumber(pageCategory.getNumber());
         categoryResponse.setPageSize(pageCategory.getSize());
@@ -68,7 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryResponse;
         
     }
-//categoryTitle, categoryDescription
+    //categoryTitle, categoryDescription
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto, Integer categoryId) {
         Category category = categoryRepository.findById(categoryId).
