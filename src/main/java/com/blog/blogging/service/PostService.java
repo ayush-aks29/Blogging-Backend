@@ -18,7 +18,7 @@ public interface PostService {
     //delete Post
     void deletePost(Integer postId);
 
-    //get all posts including pagenation
+    //get all posts including pagination
     PostResponse getAll(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection);
 
     //get post by id
@@ -29,6 +29,8 @@ public interface PostService {
 
     //get all post by user id
     List<PostDto> getAllPostByUser(Integer userId);
+
+    List<PostDto> searchPost(String keyword);
 
 
 }
