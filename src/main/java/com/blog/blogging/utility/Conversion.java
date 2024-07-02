@@ -1,23 +1,22 @@
 package com.blog.blogging.utility;
 
 import com.blog.blogging.entity.Category;
+import com.blog.blogging.entity.Comment;
 import com.blog.blogging.entity.Post;
 import com.blog.blogging.entity.User;
 import com.blog.blogging.payload.CategoryDto;
+import com.blog.blogging.payload.CommentDto;
 import com.blog.blogging.payload.PostDto;
 import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.service.implementation.UserServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 
-//@ComponentScan
 public class Conversion {
 
     @Autowired
     public UserServiceImpl userServiceImpl;
 
-//    @Autowired
     public ModelMapper modelMapper=new ModelMapper();
 
 
@@ -63,6 +62,14 @@ public class Conversion {
 
     public PostDto postToDto(Post post){
         return modelMapper.map(post, PostDto.class);
+    }
+
+    public CommentDto commentToDto(Comment comment){
+        return modelMapper.map(comment, CommentDto.class);
+    }
+
+    public Comment dtoToComment(CommentDto commentDto){
+        return modelMapper.map(commentDto, Comment.class);
     }
 
 }
