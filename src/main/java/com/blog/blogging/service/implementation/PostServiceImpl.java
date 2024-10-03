@@ -50,7 +50,6 @@ public class PostServiceImpl implements PostService {
                 orElseThrow(()-> new ResourceNotFoundException("Category", "Category id", categoryId));
 
         Post post = convert.dtoToPost(postDto);
-        post.setImageName("image.jpg");
         post.setAddedDate(new Date());
         post.setUser(user);
         post.setCategory(category);
@@ -60,13 +59,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse getAll(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection) {
-
-        Sort sort = (sortDirection.equalsIgnoreCase("asc"))?(Sort.by(sortBy).ascending()):(Sort.by(sortBy).descending());
+        Sort sort=null;
+        sort=sortDirection.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable p = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> pagePost = this.postRepository.findAll(p);
         List<Post> posts = pagePost.getContent();
-        List<PostDto> postDtoList = posts.stream().map(post->
-                        convert.postToDto(post))
+        System.out.println(posts);
+        List<PostDto> postDtoList = posts.stream().map((post)->
+                modelMapper.map(post, PostDto.class))
                 .collect(Collectors.toList());
 
         PostResponse postResponse = new PostResponse();
@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService {
                         new ResourceNotFoundException("Post","Id", postId));
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
-        post.setImageName(postDto.getImageName());
+//        post.setImageName(postDto.getImageName());
         Post updatedPost = this.postRepository.save(post);
         return convert.postToDto(updatedPost);
 

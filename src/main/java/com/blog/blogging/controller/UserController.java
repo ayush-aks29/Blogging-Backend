@@ -6,7 +6,7 @@ import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.payload.UserResponse;
 import com.blog.blogging.service.UserService;
 import com.blog.blogging.utility.Conversion;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

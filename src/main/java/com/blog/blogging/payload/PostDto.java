@@ -1,19 +1,15 @@
 package com.blog.blogging.payload;
 
 import com.blog.blogging.entity.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class PostDto {
 
     private Integer postId;
@@ -22,7 +18,7 @@ public class PostDto {
 
     private String content;
 
-    private String imageName;
+//    private String imageName;
 
     private Date addedDate;
 
@@ -30,7 +26,7 @@ public class PostDto {
 
     private UserDto user;
 
-    private List<CommentDto> comments = new ArrayList<>();
+    private Set<CommentDto> comments = new HashSet<>();
 
 
 

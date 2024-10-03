@@ -4,7 +4,7 @@ import com.blog.blogging.payload.ApiResponse;
 import com.blog.blogging.payload.PostDto;
 import com.blog.blogging.payload.PostResponse;
 import com.blog.blogging.service.PostService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +53,7 @@ public class PostController {
             @RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
             @RequestParam(value = "sortDirection", defaultValue = "asc", required = false) String sortDirection
     ){
+
     PostResponse postResponse = this.postService.getAll(pageNumber, pageSize, sortBy, sortDirection);
     return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
     }
