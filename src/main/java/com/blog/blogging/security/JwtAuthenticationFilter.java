@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -31,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         //getToken
         String requestToken = request.getHeader("Authorization");
-        System.out.println(requestToken);
+//        System.out.println(requestToken);
 
         String username = null;
 
@@ -50,7 +51,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 System.out.println("Jwt token has expired");
             } catch (MalformedJwtException e) {
                 System.out.println("invalid jwt");
-
             }
 
         } else {

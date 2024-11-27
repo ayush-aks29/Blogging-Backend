@@ -64,7 +64,7 @@ public class PostServiceImpl implements PostService {
         Pageable p = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> pagePost = this.postRepository.findAll(p);
         List<Post> posts = pagePost.getContent();
-        System.out.println(posts);
+//        System.out.println(posts);
         List<PostDto> postDtoList = posts.stream().map((post)->
                 modelMapper.map(post, PostDto.class))
                 .collect(Collectors.toList());
