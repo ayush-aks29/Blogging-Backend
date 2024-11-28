@@ -36,15 +36,6 @@ public class Conversion {
     }
 
     public UserDto userToDto(User user){
-        /*
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setAbout(user.getAbout());
-        return userDto;
-        */
         return modelMapper.map(user, UserDto.class);
     }
 

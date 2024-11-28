@@ -1,10 +1,13 @@
 package com.blog.blogging.service.implementation;
 
+import com.blog.blogging.config.AppConstants;
 import com.blog.blogging.entity.Post;
+import com.blog.blogging.entity.Role;
 import com.blog.blogging.entity.User;
 import com.blog.blogging.exception.ResourceNotFoundException;
 import com.blog.blogging.payload.UserDto;
 import com.blog.blogging.payload.UserResponse;
+import com.blog.blogging.repository.RoleRepository;
 import com.blog.blogging.repository.UserRepository;
 import com.blog.blogging.service.UserService;
 import com.blog.blogging.utility.Conversion;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +29,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     public ModelMapper modelMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 //    @Autowired
     private Conversion convert=new Conversion();
@@ -95,6 +105,15 @@ public class UserServiceImpl implements UserService {
         return convert.userToDto(user);
     }
 
+    @Override
+    public UserDto registerUser(UserDto userDto) {
+        User user = convert.dtoToUser(userDto);
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        Role role = this.roleRepository.findById(AppConstants.USER_NORMAL).get();
+        user.getRoles().add(role);
+        User savedUser = this.userRepository.save(user);
+        return convert.userToDto(savedUser);
+    }
 
 
 }

@@ -17,5 +17,6 @@ public interface UserService {
 
     UserDto getUserById(Integer userId);
 
+    UserDto registerUser(UserDto user);
 
 }

@@ -1,9 +1,14 @@
 package com.blog.blogging.payload;
 
 import javax.validation.constraints.*;
+
+import com.blog.blogging.entity.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -26,5 +31,7 @@ public class UserDto {
     @NotEmpty
     @Size(min=10, message = "Minimum 10 characters required")
     private String about;
+
+    private Set<RoleDto> roles = new HashSet<>();
 
 }
